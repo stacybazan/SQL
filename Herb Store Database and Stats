@@ -1,0 +1,19 @@
+CREATE TABLE herbs (id INTEGER PRIMARY KEY, name TEXT, price INTEGER, quantity INTEGER, rank INTEGER);
+
+INSERT INTO herbs VALUES(1, "Luna", 30, 58, 11);
+INSERT INTO herbs VALUES(2, "Womb wisdom", 35, 47, 4);
+INSERT INTO herbs VALUES(3, "Rose", 15, 33, 7);
+INSERT INTO herbs VALUES(4, "Ashwagandha", 60, 70, 1)';
+INSERT INTO herbs VALUES(5, "Better sleep", 55, 29, 5);
+INSERT INTO herbs VALUES(6, "Focus", 60, 59, 2);
+INSERT INTO herbs VALUES(7, "Elixir", 54, 30, 10);
+INSERT INTO herbs VALUES(8, "Happy juice", 54, 60, 3);
+INSERT INTO herbs VALUES(9, "Chill pill", 50, 24, 13);
+INSERT INTO herbs VALUES(10, "Aloe vera", 34, 35, 12);
+INSERT INTO herbs VALUES(11, "Root", 55, 67, 6);
+INSERT INTO herbs VALUES(12, "Head space", 64, 54, 8);
+INSERT INTO herbs VALUES(13, "Peace", 63, 75, 9);
+INSERT INTO herbs VALUES(14, "Uplift", 87, 89, 13);
+INSERT INTO herbs VALUES(15, "Calm", 43, 64, 15);
+
+SELECT * FROM herbs;
