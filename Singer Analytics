@@ -1,0 +1,77 @@
+CREATE TABLE singers (id INTEGER PRIMARY KEY AUTOINCREMENT,
+fullname TEXT, 
+age INTEGER);
+
+INSERT INTO singers (fullname, age) VALUES('Taylor Swift', 33);
+INSERT INTO singers (fullname, age) VALUES('Billie Eilish', 21);
+INSERT INTO singers (fullname, age) VALUES('Shawn Mendez', 24);
+INSERT INTO singers (fullname, age) VALUES('Harry Styles', 29);
+INSERT INTO singers (fullname, age) VALUES('Beyonce Knowles', 41);
+INSERT INTO singers (fullname, age) VALUES('Miley Cyrus', 30);
+INSERT INTO singers (fullname, age) VALUES('Rihanna Fenty', 35);
+INSERT INTO singers (fullname, age) VALUES('Zayn Malik', 30);
+INSERT INTO singers (fullname, age) VALUES('Olivia Rodrigo', 20);
+INSERT INTO singers (fullname, age) VALUES('Selena Gomez', 31);
+INSERT INTO singers (fullname, age) VALUES('Justin Bieber', 29);
+INSERT INTO singers (fullname, age) VALUES('Ariana Grande', 30);
+
+
+CREATE TABLE songs (id INTEGER PRIMARY KEY AUTOINCREMENT,
+title TEXT, 
+created_at TEXT,
+person_id INTEGER);
+
+INSERT INTO songs (title, created_at, person_id) VALUES('Higher', 'New York', 7);
+INSERT INTO songs (title, created_at, person_id) VALUES('Cruel Summer', 'Los Angeles', 1);
+INSERT INTO songs (title, created_at, person_id) VALUES('Theres Nothing Holding Me Back', 'New York', 3);
+INSERT INTO songs (title, created_at, person_id) VALUES('Cuff It', 'Atlanta', 5);
+INSERT INTO songs (title, created_at, person_id) VALUES('What Was I Made For?', 'Highland Park', 2);
+INSERT INTO songs (title, created_at, person_id) VALUES('Pillow Talk', 'London', 8);
+INSERT INTO songs (title, created_at, person_id) VALUES('Flowers', 'Los Angeles', 6);
+INSERT INTO songs (title, created_at, person_id) VALUES('Woman', 'Port Antonio', 4);
+INSERT INTO songs (title, created_at, person_id) VALUES('Problem', 'Los Angeles', 12);
+INSERT INTO songs (title, created_at, person_id) VALUES('Traitor', 'Los Angeles', 9);
+INSERT INTO songs (title, created_at, person_id) VALUES('Baby', 'Atlanta', 11);
+INSERT INTO songs (title, created_at, person_id) VALUES('Lose You To Love Me', 'San Antonio', 10);
+
+
+CREATE TABLE records (id INTEGER PRIMARY KEY AUTOINCREMENT,
+singer_id INTEGER,
+song_id INTEGER);
+
+INSERT INTO records (singer_id, song_id) VALUES(1, 2);
+INSERT INTO records (singer_id, song_id) VALUES(2, 5);
+INSERT INTO records (singer_id, song_id) VALUES(3, 3);
+INSERT INTO records (singer_id, song_id) VALUES(4, 8);
+INSERT INTO records (singer_id, song_id) VALUES(5, 4);
+INSERT INTO records (singer_id, song_id) VALUES(6, 7);
+INSERT INTO records (singer_id, song_id) VALUES(7, 1);
+INSERT INTO records (singer_id, song_id) VALUES(8, 6);
+INSERT INTO records (singer_id, song_id) VALUES(9, 10);
+INSERT INTO records (singer_id, song_id) VALUES(10, 12);
+INSERT INTO records (singer_id, song_id) VALUES(11, 11);
+INSERT INTO records (singer_id, song_id) VALUES(12, 9);
+
+-- What songs did the singer write?
+SELECT a.fullname, b.title
+FROM records
+JOIN singers a
+ON records.singer_id = a.id
+JOIN songs b
+ON records.song_id = b.id;
+
+-- How old is the singer from the song?
+SELECT a.fullname, a.age, b.title
+FROM records
+JOIN singers a
+ON records.singer_id = a.id
+JOIN songs b
+ON records.song_id = b.id;
+
+-- Where do the singers record their music?
+SELECT a.id, a.fullname, b.created_at
+FROM records
+JOIN singers a
+ON records.singer_id = a.id
+JOIN songs b
+ON records.song_id = b.id;
