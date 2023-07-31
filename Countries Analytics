@@ -213,39 +213,39 @@ INSERT INTO countries(name,population,percent_one_year_change,population_change,
 INSERT INTO countries(name,population,percent_one_year_change,population_change,density_per_sq_km,area_sq_km,net_migrants,fertility_rate,median_age,percent_of_world_pop) VALUES ('Antigua and Barbuda',97929,0.84,811,223,440,0,2.00,34.00,0);
 
 
-#1) Which country has the smallest population? 
+-- Which country has the smallest population? 
 SELECT name, MIN(population) AS min_population
 FROM countries;
 
-#2) Which country has the highest population?
+-- Which country has the highest population?
 SELECT name, MAX(population) AS max_population FROM countries;
 
-#3) Which country has an average population?
+-- Which country has an average population?
 SELECT name, AVG(population) AS avg_population FROM countries;
 
-#4) Which countries have a higher population than 268903740?
+-- Which countries have a higher population than 268903740?
 SELECT name, MAX(population) AS max_population FROM countries 
 GROUP BY name
 HAVING max_population > 268903740;
 
-#5) Which countries have a smaller population than than 1118856?
+-- Which countries have a smaller population than than 1118856?
 SELECT name, MIN(population) AS min_population
 FROM countries
 GROUP BY name
 HAVING min_population < 1118856;
 
-#6) Which countries have an average age of 26 and a 2.50 fertility rate? 
+-- Which countries have an average age of 26 and a 2.50 fertility rate? 
 SELECT name FROM countries WHERE median_age=26 AND fertility_rate < 2.50;
 
-#7) Which countries have an avereage age below 18 or a fertility rate of 3.00?
+-- Which countries have an avereage age below 18 or a fertility rate of 3.00?
 SELECT name FROM countries WHERE median_age < 18 OR fertility_rate = 3.00;
 
-#8) Display the countries, their population change, and percetage of a one year change, but only having a population change less than 1289: 
+-- Display the countries, their population change, and percetage of a one year change, but only having a population change less than 1289: 
 SELECT name, population_change, ROUND(percent_one_year_change*100) AS year_change FROM countries
 GROUP BY name
 HAVING population_change < 1289;
 
-#9) What are the countries average age goup? Senior, adult, or minor?
+-- What are the countries average age goup? Senior, adult, or minor?
 SELECT name,
 CASE 
 WHEN median_age > 60 THEN 'Senior'
