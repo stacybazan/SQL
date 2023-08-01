@@ -17,7 +17,7 @@ AND orderid <> 'Order ID'
 SELECT distinct acctnum
 FROM BIT_DB.customers cust
 INNER JOIN BIT_DB.FebSales Feb
-ON cust.order_id=FEB.orderid
+ON cust.order_id=Feb.orderid
 WHERE length(orderid) = 6 
 AND orderid <> 'Order ID'
 
