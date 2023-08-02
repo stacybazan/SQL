@@ -249,7 +249,7 @@ HAVING population_change < 1289;
 SELECT name,
 CASE 
 WHEN median_age > 60 THEN 'Senior'
-WHEN median_age > 21 THEN 'Adult'
+WHEN median_age > 18 THEN 'Adult'
 ELSE 'Minor'
 END AS age_group FROM countries
 GROUP BY name;
