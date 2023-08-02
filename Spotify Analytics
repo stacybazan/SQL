@@ -1,0 +1,95 @@
+# For this project, I downloaded Spotify data from Kaggle.
+# Then I created a table to insert Spotify data into.
+# Finally, I performed analytics on the data using SQL.
+
+#Creating the table: 
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL 
+)
+
+#Then I inserted the Spotify Data .csv into the table.
+
+#Next, I explored the data using the following SQL. 
+
+#1 Who are the five most popular artists based on the popularity of their tracks?
+SELECT artist_name
+FROM BIT_DB.spotifydata
+ORDER BY popularity desc
+LIMIT 5;
+
+#2 Which ten songs would be optimal for a dance party?
+SELECT track_name, 
+danceability
+FROM BIT_DB.spotifydata
+ORDER BY danceability desc
+LIMIT 10;
+
+#3 What is the average energy level percentage in Bad Bunny’s music?
+SELECT distinct artist_name, 
+AVG(energy*100)
+FROM BIT_DB.spotifydata
+WHERE artist_name = 'Bad Bunny';
+
+#4 How many times did each artist make the Top 50 hits?
+SELECT distinct artist_name, 
+COUNT(track_name)
+FROM BIT_DB.spotifydata
+GROUP BY artist_name
+ORDER BY COUNT(track_name) desc;
+
+#5 Which popular songs have a longer duration than 230,000 milliseconds?
+SELECT popularity, track_name,
+duration_ms
+FROM BIT_DB.spotifydata
+WHERE duration_ms > 230000
+ORDER BY popularity desc;
+
+#6 What are the average popularity, danceability, and energy levels categorized by artist and track?
+SELECT artist_name, 
+track_name, 
+avg(popularity), 
+avg(danceability), 
+avg(energy)
+FROM BIT_DB.spotifydata
+GROUP BY artist_name, track_name;
+
+#7 Which songs by Doja Cat have made it into the top 50?
+SELECT artist_name, 
+track_name
+FROM BIT_DB.spotifydata
+WHERE artist_name LIKE 'Doja%';
+
+#8 How popular is the loudest song in the list? -the lower the number, the louder the song-
+SELECT popularity, 
+track_name, 
+MIN(loudness)
+FROM BIT_DB.spotifydata
+ORDER BY MIN(loudness);
+
+#9 Can you group the artists based on their song’s popularity?
+SELECT artist_name,
+CASE
+WHEN popularity > 90 THEN 'Top Star'
+WHEN popularity > 80 THEN 'Mid Star'
+WHEN popularity > 70 THEN 'Rising Star'
+ELSE 'Lower Star'
+END AS star_level 
+FROM BIT_DB.spotifydata
+GROUP BY artist_name;
